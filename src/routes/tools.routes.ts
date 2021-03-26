@@ -1,10 +1,17 @@
 import { Router } from 'express';
+
+//  services
 import CreateToolService from '../services/createToolService';
 import ListToolsService from '../services/listToolsService';
 import SearchToolsService from '../services/searchToolsService';
 import DeleteToolService from '../services/deleteToolService';
 
+//   middlewares
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const toolsRouter = Router();
+
+toolsRouter.use(ensureAuthenticated);
 
 toolsRouter.post('/', async (req, res) => {
   const { title, link, description, tags } = req.body;
