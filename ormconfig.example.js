@@ -1,6 +1,6 @@
 module.exports = {
   "type":"type_of_database",
-  "url": "database_url",
+  "url": process.env.NODE_ENV === 'development' ? process.env.DATABASE_URL : process.env.TEST_DATABASE_URL,
   "entities": [
     "./path/to/models/*.ts"
   ],

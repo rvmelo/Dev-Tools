@@ -19,9 +19,9 @@ interface Response {
 
 class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<Response> {
-    const customerRepository = getRepository(User);
+    const usersRepository = getRepository(User);
 
-    const user = await customerRepository.findOne({ where: { email } });
+    const user = await usersRepository.findOne({ where: { email } });
 
     if (!user) {
       throw new AppError(' wrong user/password combinations');
