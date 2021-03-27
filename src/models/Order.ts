@@ -1,32 +1,33 @@
 import {
   Entity,
-  Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
   OneToMany,
+  Column,
 } from 'typeorm';
 
+import User from './User';
 import OrdersTools from './OrdersTools';
 
-@Entity('tools')
-class Tool {
+@Entity('orders')
+class Order {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  title: string;
+  user_id: string;
 
-  @Column()
-  link: string;
+  @ManyToOne(() => User, { eager: true })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
-  @Column()
-  description: string;
-
-  @Column('text', { array: true })
-  tags: string[];
-
-  @OneToMany(() => OrdersTools, order_tools => order_tools.tool)
+  @OneToMany(() => OrdersTools, order_tools => order_tools.order, {
+    cascade: true,
+    eager: true,
+  })
   order_tools: OrdersTools[];
 
   @CreateDateColumn()
@@ -36,4 +37,4 @@ class Tool {
   updated_at: Date;
 }
 
-export default Tool;
+export default Order;
