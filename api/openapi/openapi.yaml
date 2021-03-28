@@ -1,0 +1,402 @@
+openapi: 3.0.0
+info:
+  title: dev-tools api
+  description: API for storing/searching software development tools.
+  version: 0.1.9
+servers:
+  - url: https://dev-tools-rvmelo.herokuapp.com/
+    description: production server
+  - url: http://localhost:3000
+    description: local server
+paths:
+  /users:
+    post:
+      summary: Create new user.
+      description: Create user and add to database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 46b0f330-811f-40ee-b427-acf3d7126435
+                  email:
+                    type: string
+                    example: yennefer@gmail.com
+                  created_at:
+                    type: string
+                    example: "2021-03-28T04:04:32.632Z"
+                  updated_at:
+                    type: string
+                    example: "2021-03-28T04:04:32.632Z"
+        '400':
+          description: User already exists.
+        '500':
+          description: Internal server error.
+  /sessions:
+    post:
+      summary: Create new session.
+      description: Enable user authentication through email/password combination.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: An object with user data and token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 46b0f330-811f-40ee-b427-acf3d7126435
+                      email:
+                        type: string
+                        example: yennefer@gmail.com
+                      created_at:
+                        type: string
+                        example: "2021-03-28T04:04:32.632Z"
+                      updated_at:
+                        type: string
+                        example: "2021-03-28T04:04:32.632Z"
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTY4Njg5MTMsImV4cCI6MTYxNjk1NTMxMywic3ViIjoiZWZkODE3OTEtZTJkMi00ZmZjLTkwMGMtN2ZiMTJhNzMwYTlmIn0.INNRCcN4Gxg3WB2HwL8CFvg_uj3O-IFcc-MuvonG0MM
+
+        '400':
+          description: wrong user/password combinations.
+        '500':
+          description: Internal server error.
+  /tools:
+    post:
+      summary: Create new dev tool.
+      description: Create new dev tool and add to database.
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+            format: jwt
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: json-server
+                link:
+                  type: string
+                  example: https://github.com/typicode/json-server
+                description:
+                  type: string
+                  example: Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.
+                tags:
+                  example: [
+                     "api",
+                     "json",
+                     "schema",
+                     "node",
+                     "github",
+                     "rest",
+                  ]
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: A newly created dev tool.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 46b0f330-811f-40ee-b427-acf3d7126435
+                  title:
+                    type: string
+                    example: json-server
+                  link:
+                    type: string
+                    example: https://github.com/typicode/json-server
+                  description:
+                    type: string
+                    example: Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.
+                  tags:
+                    example: [
+                       "api",
+                       "json",
+                       "schema",
+                       "node",
+                       "github",
+                       "rest",
+                    ]
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: string
+                    example: "2021-03-28T04:04:32.632Z"
+                  updated_at:
+                    type: string
+                    example: "2021-03-28T04:04:32.632Z"
+        '500':
+          description: Internal server error.
+        '401':
+          description: JWT is missing.
+  /tools/search:
+    get:
+      summary: Search dev tools by tags.
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+            format: jwt
+          required: true
+        - name: tag
+          schema:
+            type : string
+          in: query
+          required: false
+          description: Tag to search dev tool.
+      responses:
+        '200':
+          description: A user dev tool.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 46b0f330-811f-40ee-b427-acf3d7126435
+                    title:
+                      type: string
+                      example: json-server
+                    link:
+                      type: string
+                      example: https://github.com/typicode/json-server
+                    description:
+                      type: string
+                      example: Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.
+                    tags:
+                      example: [
+                         "api",
+                         "json",
+                         "schema",
+                         "node",
+                         "github",
+                         "rest",
+                      ]
+                      type: array
+                      items:
+                        type: string
+                    created_at:
+                      type: string
+                      example: "2021-03-28T04:04:32.632Z"
+                    updated_at:
+                      type: string
+                      example: "2021-03-28T04:04:32.632Z"
+        '500':
+          description: Internal server error.
+        '401':
+          description: JWT is missing.
+
+  /tools/list:
+    get:
+      summary: List dev tools.
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+            format: jwt
+          required: true
+      description: List dev tools from database.
+      responses:
+        '200':
+          description: A user dev tool.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 46b0f330-811f-40ee-b427-acf3d7126435
+                    title:
+                      type: string
+                      example: json-server
+                    link:
+                      type: string
+                      example: https://github.com/typicode/json-server
+                    description:
+                      type: string
+                      example: Fake REST API based on a json schema. Useful for mocking and creating APIs for front-end devs to consume in coding challenges.
+                    tags:
+                      example: [
+                         "api",
+                         "json",
+                         "schema",
+                         "node",
+                         "github",
+                         "rest",
+                      ]
+                      type: array
+                      items:
+                        type: string
+                    created_at:
+                      type: string
+                      example: "2021-03-28T04:04:32.632Z"
+                    updated_at:
+                      type: string
+                      example: "2021-03-28T04:04:32.632Z"
+        '401':
+          description: JWT is missing.
+        '500':
+          description: Internal server error.
+
+  /tools/{id}:
+    delete:
+      summary: Delete dev tool by id.
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+            format: jwt
+          required: true
+        - name: id
+          schema:
+            type : string
+            format: uuid
+          in: path
+          required: true
+          description: Dev tool id.
+      responses:
+        '401':
+          description: JWT is missing.
+        '204':
+          description: Empty response for dev tool deletion.
+        '500':
+          description: Internal server error.
+
+  /orders:
+    post:
+      summary: Create new order for dev tools.
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+            format: jwt
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_tools:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      tool_id:
+                        type: string
+                        format: uuid
+                        example: 0df09c18-02ed-43f6-a0d0-32e2d45e47de
+                      quantity:
+                        type: number
+                        example: 3
+      responses:
+        '401':
+          description: JWT is missing.
+        '400':
+          description: All tools should be available on the database
+        '500':
+          description: Internal server error.
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 46b0f330-811f-40ee-b427-acf3d7126435
+                      email:
+                        type: string
+                        example: yennefer@gmail.com
+                      created_at:
+                        type: string
+                        example: "2021-03-28T04:04:32.632Z"
+                      updated_at:
+                        type: string
+                        example: "2021-03-28T04:04:32.632Z"
+                  order_tools:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tool_id:
+                          type: string
+                          format: uuid
+                          example: 0df09c18-02ed-43f6-a0d0-32e2d45e47de
+                        quantity:
+                          type: number
+                          example: 3
+                  created_at:
+                      type: string
+                      example: "2021-03-28T04:04:32.632Z"
+                  updated_at:
+                      type: string
+                      example: "2021-03-28T04:04:32.632Z"
+
+
+
+
+

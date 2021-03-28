@@ -36,7 +36,7 @@ toolsRouter.get('/list', async (req, res) => {
   return res.status(200).json(tools);
 });
 
-toolsRouter.get('/', async (req, res) => {
+toolsRouter.get('/search', async (req, res) => {
   const { tag } = req.query;
 
   const searchToolsService = new SearchToolsService();
