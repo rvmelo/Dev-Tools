@@ -34,7 +34,7 @@ class AuthenticateUserService {
     });
 
     if (!user) {
-      throw new _appError.default(' wrong user/password combinations');
+      throw new _appError.default('wrong user/password combinations');
     }
 
     const passwordMatched = await (0, _bcrypt.compare)(password, user.password);

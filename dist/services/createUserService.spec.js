@@ -8,29 +8,19 @@ var _createUserService = _interopRequireDefault(require("./createUserService"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-await-in-loop */
-
-/* eslint-disable no-restricted-syntax */
+let connection;
 describe('AuthenticateUserService', () => {
-  beforeAll(async done => {
-    await (0, _typeorm.createConnection)();
-    done();
+  beforeAll(async () => {
+    connection = await (0, _typeorm.createConnection)();
   });
-  beforeEach(async done => {
-    // Fetch all the entities
-    const entities = (0, _typeorm.getConnection)().entityMetadatas;
-
-    for (const entity of entities) {
-      const repository = await (0, _typeorm.getConnection)().getRepository(entity.name); // Get repository
-
-      await repository.clear(); // Clear each entity table's content
-    }
-
-    done();
+  beforeEach(async () => {
+    await connection.query('DELETE FROM users');
+    await connection.query('DELETE FROM tools');
   });
-  afterAll(async done => {
-    await (0, _typeorm.getConnection)().close();
-    done();
+  afterAll(async () => {
+    const mainConnection = (0, _typeorm.getConnection)();
+    await connection.close();
+    await mainConnection.close();
   });
   it('should create new user', async () => {
     const createUserService = new _createUserService.default();

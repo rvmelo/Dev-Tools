@@ -1,34 +1,27 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-import { createConnection, getConnection } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 
 import AppError from '../errors/appError';
 
 import AuthenticateUserService from './authenticateUserService';
 import CreateUserService from './createUserService';
 
+let connection: Connection;
+
 describe('AuthenticateUserService', () => {
-  beforeAll(async done => {
-    await createConnection();
-    done();
+  beforeAll(async () => {
+    connection = await createConnection();
   });
 
-  beforeEach(async done => {
-    // Fetch all the entities
-    const entities = getConnection().entityMetadatas;
-
-    for (const entity of entities) {
-      const repository = await getConnection().getRepository(entity.name); // Get repository
-      await repository.clear(); // Clear each entity table's content
-    }
-
-    done();
+  beforeEach(async () => {
+    await connection.query('DELETE FROM users');
+    await connection.query('DELETE FROM tools');
   });
 
-  afterAll(async done => {
-    await getConnection().close();
+  afterAll(async () => {
+    const mainConnection = getConnection();
 
-    done();
+    await connection.close();
+    await mainConnection.close();
   });
 
   it('should be able to authenticate', async () => {

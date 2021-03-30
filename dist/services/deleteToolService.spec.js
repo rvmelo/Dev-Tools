@@ -10,27 +10,19 @@ var _listToolsService = _interopRequireDefault(require("./listToolsService"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-await-in-loop */
-
-/* eslint-disable no-restricted-syntax */
+let connection;
 describe('DeleteToolService', () => {
-  beforeAll(async done => {
-    await (0, _typeorm.createConnection)();
-    done();
+  beforeAll(async () => {
+    connection = await (0, _typeorm.createConnection)();
   });
   beforeEach(async () => {
-    // Fetch all the entities
-    const entities = (0, _typeorm.getConnection)().entityMetadatas;
-
-    for (const entity of entities) {
-      const repository = await (0, _typeorm.getConnection)().getRepository(entity.name); // Get repository
-
-      await repository.clear(); // Clear each entity table's content
-    }
+    await connection.query('DELETE FROM users');
+    await connection.query('DELETE FROM tools');
   });
-  afterAll(async done => {
-    await (0, _typeorm.getConnection)().close();
-    done();
+  afterAll(async () => {
+    const mainConnection = (0, _typeorm.getConnection)();
+    await connection.close();
+    await mainConnection.close();
   });
   it('should delete given tool', async () => {
     const createToolService = new _createToolService.default();

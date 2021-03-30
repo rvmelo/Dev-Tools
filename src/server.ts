@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import './database';
 
+import { getConnection } from 'typeorm';
+
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 
@@ -30,6 +32,6 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log('server started on port 3000'),
-);
+app.listen(process.env.PORT || 3000, () => {
+  console.log('server started on port 3000');
+});

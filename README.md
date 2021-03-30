@@ -14,11 +14,14 @@ install dependencies:
 run api:
 - yarn dev:server
 
+run migrations:
+- yarn typeorm migration:run
+
 ## Environment Variables
 
 APP_SECRET: Secret to generate tokens
 DATABASE_URL: Database url for storing data (ormconfig.js)
 TEST_DATABASE_URL: Database for tests (ormconfig.js)
-NODE_ENV: Environment where the app runs (development/production)
+ENVIRONMENT: Environment where the app runs (development/production)
 TEST_MODE: Set the value to "on" for running tests using test database (on/off)
 

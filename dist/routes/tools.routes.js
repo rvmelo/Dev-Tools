@@ -7,6 +7,8 @@ exports.default = void 0;
 
 var _express = require("express");
 
+var _celebrate = require("celebrate");
+
 var _createToolService = _interopRequireDefault(require("../services/createToolService"));
 
 var _listToolsService = _interopRequireDefault(require("../services/listToolsService"));
@@ -23,7 +25,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //   middlewares
 const toolsRouter = (0, _express.Router)();
 toolsRouter.use(_ensureAuthenticated.default);
-toolsRouter.post('/', async (req, res) => {
+toolsRouter.post('/', (0, _celebrate.celebrate)({
+  [_celebrate.Segments.BODY]: {
+    title: _celebrate.Joi.string().trim().required(),
+    link: _celebrate.Joi.string().trim().uri().required(),
+    description: _celebrate.Joi.string().trim(),
+    tags: _celebrate.Joi.array().required()
+  }
+}), async (req, res) => {
   const {
     title,
     link,
@@ -44,7 +53,7 @@ toolsRouter.get('/list', async (req, res) => {
   const tools = await listToolsService.execute();
   return res.status(200).json(tools);
 });
-toolsRouter.get('/', async (req, res) => {
+toolsRouter.get('/search', async (req, res) => {
   const {
     tag
   } = req.query;

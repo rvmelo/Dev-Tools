@@ -23,7 +23,7 @@ class Tool {
   @Column()
   description: string;
 
-  @Column('text', { array: true })
+  @Column('simple-array', { array: true })
   tags: string[];
 
   @OneToMany(() => OrdersTools, order_tools => order_tools.tool)

@@ -16,8 +16,8 @@ class SearchToolsService {
     tag
   }) {
     const toolsRepository = (0, _typeorm.getRepository)(_Tool.default);
-    const tools = await toolsRepository.createQueryBuilder('tools').where('tools.tags::text[] @> ARRAY[:tag]::text[]', {
-      tag
+    const tools = await toolsRepository.createQueryBuilder('tools').where('tools.tags like :tag', {
+      tag: `%${tag}%`
     }).getMany();
     return tools;
   }

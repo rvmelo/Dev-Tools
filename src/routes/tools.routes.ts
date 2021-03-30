@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 //  services
 import CreateToolService from '../services/createToolService';
@@ -13,20 +14,31 @@ const toolsRouter = Router();
 
 toolsRouter.use(ensureAuthenticated);
 
-toolsRouter.post('/', async (req, res) => {
-  const { title, link, description, tags } = req.body;
+toolsRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      title: Joi.string().trim().required(),
+      link: Joi.string().trim().uri().required(),
+      description: Joi.string().trim(),
+      tags: Joi.array().required(),
+    },
+  }),
+  async (req, res) => {
+    const { title, link, description, tags } = req.body;
 
-  const createToolService = new CreateToolService();
+    const createToolService = new CreateToolService();
 
-  const tool = await createToolService.execute({
-    title,
-    link,
-    description,
-    tags,
-  });
+    const tool = await createToolService.execute({
+      title,
+      link,
+      description,
+      tags,
+    });
 
-  return res.status(201).json(tool);
-});
+    return res.status(201).json(tool);
+  },
+);
 
 toolsRouter.get('/list', async (req, res) => {
   const listToolsService = new ListToolsService();

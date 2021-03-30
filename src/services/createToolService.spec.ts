@@ -1,29 +1,24 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-import { createConnection, getConnection } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 
 import CreateToolService from './createToolService';
 
+let connection: Connection;
+
 describe('CreateToolService', () => {
-  beforeAll(async done => {
-    await createConnection();
-    done();
+  beforeAll(async () => {
+    connection = await createConnection();
   });
 
   beforeEach(async () => {
-    // Fetch all the entities
-    const entities = getConnection().entityMetadatas;
-
-    for (const entity of entities) {
-      const repository = await getConnection().getRepository(entity.name); // Get repository
-      await repository.clear(); // Clear each entity table's content
-    }
+    await connection.query('DELETE FROM users');
+    await connection.query('DELETE FROM tools');
   });
 
-  afterAll(async done => {
-    await getConnection().close();
+  afterAll(async () => {
+    const mainConnection = getConnection();
 
-    done();
+    await connection.close();
+    await mainConnection.close();
   });
 
   it('should create new tool', async () => {

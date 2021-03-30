@@ -360,6 +360,9 @@ paths:
               schema:
                 type: object
                 properties:
+                  id:
+                    type: string
+                    example: 1e4d2c30-af1a-4d13-85b1-0e35b8a28e5a
                   user_id:
                     type: string
                   user:
@@ -382,13 +385,27 @@ paths:
                     items:
                       type: object
                       properties:
+                        id:
+                          type: string
+                          format: uuid
+                          example: 21d2ad1e-dd23-4d50-b4a3-7922ef9d2b50
                         tool_id:
                           type: string
                           format: uuid
                           example: 0df09c18-02ed-43f6-a0d0-32e2d45e47de
+                        order_id:
+                          type: string
+                          format: uuid
+                          example: 1e4d2c30-af1a-4d13-85b1-0e35b8a28e5a
                         quantity:
                           type: number
                           example: 3
+                        created_at:
+                          type: string
+                          example: "2021-03-28T04:04:32.632Z"
+                        updated_at:
+                          type: string
+                          example: "2021-03-28T04:04:32.632Z"
                   created_at:
                       type: string
                       example: "2021-03-28T04:04:32.632Z"

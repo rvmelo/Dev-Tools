@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1616810252548" clover="3.2.0">
-  <project timestamp="1616810252553" name="All files">
-    <metrics statements="168" coveredstatements="168" conditionals="23" coveredconditionals="23" methods="12" coveredmethods="12" elements="203" coveredelements="203" complexity="0" loc="168" ncloc="168" packages="1" files="6" classes="6"/>
+<coverage generated="1617071146982" clover="3.2.0">
+  <project timestamp="1617071146982" name="All files">
+    <metrics statements="221" coveredstatements="221" conditionals="28" coveredconditionals="28" methods="14" coveredmethods="14" elements="263" coveredelements="263" complexity="0" loc="221" ncloc="221" packages="1" files="7" classes="7"/>
     <file name="authenticateUserService.ts" path="C:\Users\Rober\Documents\nodejs-projects\dev-tools\src\services\authenticateUserService.ts">
       <metrics statements="47" coveredstatements="47" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
@@ -52,6 +52,60 @@
       <line num="46" count="1" type="stmt"/>
       <line num="47" count="1" type="stmt"/>
     </file>
+    <file name="createOrderService.ts" path="C:\Users\Rober\Documents\nodejs-projects\dev-tools\src\services\createOrderService.ts">
+      <metrics statements="51" coveredstatements="51" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="20" count="2" type="cond" truecount="1" falsecount="0"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="22" count="2" type="stmt"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="25" count="2" type="stmt"/>
+      <line num="26" count="2" type="stmt"/>
+      <line num="27" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="29" count="2" type="cond" truecount="1" falsecount="0"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="31" count="2" type="stmt"/>
+      <line num="32" count="2" type="stmt"/>
+      <line num="33" count="2" type="stmt"/>
+      <line num="34" count="2" type="stmt"/>
+      <line num="35" count="2" type="cond" truecount="1" falsecount="0"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="38" count="1" type="stmt"/>
+      <line num="39" count="1" type="stmt"/>
+      <line num="40" count="1" type="stmt"/>
+      <line num="41" count="1" type="stmt"/>
+      <line num="42" count="1" type="stmt"/>
+      <line num="43" count="1" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
+      <line num="46" count="2" type="stmt"/>
+      <line num="47" count="2" type="stmt"/>
+      <line num="48" count="2" type="stmt"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="51" count="1" type="stmt"/>
+    </file>
     <file name="createToolService.ts" path="C:\Users\Rober\Documents\nodejs-projects\dev-tools\src\services\createToolService.ts">
       <metrics statements="33" coveredstatements="33" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
@@ -64,27 +118,27 @@
       <line num="8" count="1" type="stmt"/>
       <line num="9" count="1" type="stmt"/>
       <line num="10" count="1" type="stmt"/>
-      <line num="11" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="12" count="3" type="cond" truecount="1" falsecount="0"/>
-      <line num="13" count="4" type="stmt"/>
-      <line num="14" count="4" type="stmt"/>
-      <line num="15" count="4" type="stmt"/>
-      <line num="16" count="4" type="stmt"/>
-      <line num="17" count="4" type="stmt"/>
-      <line num="18" count="4" type="stmt"/>
-      <line num="19" count="4" type="stmt"/>
-      <line num="20" count="4" type="stmt"/>
-      <line num="21" count="4" type="stmt"/>
-      <line num="22" count="4" type="stmt"/>
-      <line num="23" count="4" type="stmt"/>
-      <line num="24" count="4" type="stmt"/>
-      <line num="25" count="4" type="stmt"/>
-      <line num="26" count="4" type="stmt"/>
-      <line num="27" count="4" type="stmt"/>
-      <line num="28" count="4" type="stmt"/>
-      <line num="29" count="4" type="stmt"/>
-      <line num="30" count="4" type="stmt"/>
-      <line num="31" count="3" type="stmt"/>
+      <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="12" count="4" type="cond" truecount="1" falsecount="0"/>
+      <line num="13" count="5" type="stmt"/>
+      <line num="14" count="5" type="stmt"/>
+      <line num="15" count="5" type="stmt"/>
+      <line num="16" count="5" type="stmt"/>
+      <line num="17" count="5" type="stmt"/>
+      <line num="18" count="5" type="stmt"/>
+      <line num="19" count="5" type="stmt"/>
+      <line num="20" count="5" type="stmt"/>
+      <line num="21" count="5" type="stmt"/>
+      <line num="22" count="5" type="stmt"/>
+      <line num="23" count="5" type="stmt"/>
+      <line num="24" count="5" type="stmt"/>
+      <line num="25" count="5" type="stmt"/>
+      <line num="26" count="5" type="stmt"/>
+      <line num="27" count="5" type="stmt"/>
+      <line num="28" count="5" type="stmt"/>
+      <line num="29" count="5" type="stmt"/>
+      <line num="30" count="5" type="stmt"/>
+      <line num="31" count="4" type="stmt"/>
       <line num="32" count="1" type="stmt"/>
       <line num="33" count="1" type="stmt"/>
     </file>
@@ -101,30 +155,30 @@
       <line num="9" count="1" type="stmt"/>
       <line num="10" count="1" type="stmt"/>
       <line num="11" count="1" type="stmt"/>
-      <line num="12" count="4" type="cond" truecount="2" falsecount="0"/>
-      <line num="13" count="4" type="cond" truecount="1" falsecount="0"/>
-      <line num="14" count="4" type="stmt"/>
-      <line num="15" count="4" type="stmt"/>
-      <line num="16" count="4" type="stmt"/>
-      <line num="17" count="4" type="stmt"/>
-      <line num="18" count="4" type="stmt"/>
-      <line num="19" count="4" type="stmt"/>
-      <line num="20" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="12" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="13" count="6" type="cond" truecount="1" falsecount="0"/>
+      <line num="14" count="7" type="stmt"/>
+      <line num="15" count="7" type="stmt"/>
+      <line num="16" count="7" type="stmt"/>
+      <line num="17" count="7" type="stmt"/>
+      <line num="18" count="7" type="stmt"/>
+      <line num="19" count="7" type="stmt"/>
+      <line num="20" count="7" type="cond" truecount="1" falsecount="0"/>
       <line num="21" count="1" type="stmt"/>
       <line num="22" count="1" type="stmt"/>
-      <line num="23" count="3" type="stmt"/>
-      <line num="24" count="3" type="stmt"/>
-      <line num="25" count="4" type="stmt"/>
-      <line num="26" count="4" type="stmt"/>
-      <line num="27" count="4" type="stmt"/>
-      <line num="28" count="4" type="stmt"/>
-      <line num="29" count="4" type="stmt"/>
-      <line num="30" count="4" type="stmt"/>
-      <line num="31" count="4" type="stmt"/>
-      <line num="32" count="4" type="stmt"/>
-      <line num="33" count="4" type="stmt"/>
-      <line num="34" count="4" type="stmt"/>
-      <line num="35" count="4" type="stmt"/>
+      <line num="23" count="6" type="cond" truecount="1" falsecount="0"/>
+      <line num="24" count="6" type="stmt"/>
+      <line num="25" count="7" type="stmt"/>
+      <line num="26" count="7" type="stmt"/>
+      <line num="27" count="7" type="stmt"/>
+      <line num="28" count="7" type="stmt"/>
+      <line num="29" count="7" type="stmt"/>
+      <line num="30" count="7" type="stmt"/>
+      <line num="31" count="7" type="stmt"/>
+      <line num="32" count="7" type="stmt"/>
+      <line num="33" count="7" type="stmt"/>
+      <line num="34" count="7" type="stmt"/>
+      <line num="35" count="6" type="stmt"/>
       <line num="36" count="1" type="stmt"/>
       <line num="37" count="1" type="stmt"/>
     </file>
@@ -137,13 +191,13 @@
       <line num="5" count="1" type="stmt"/>
       <line num="6" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
-      <line num="8" count="1" type="cond" truecount="2" falsecount="0"/>
-      <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
-      <line num="10" count="1" type="stmt"/>
-      <line num="11" count="1" type="stmt"/>
-      <line num="12" count="1" type="stmt"/>
-      <line num="13" count="1" type="stmt"/>
-      <line num="14" count="1" type="stmt"/>
+      <line num="8" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="9" count="3" type="cond" truecount="1" falsecount="0"/>
+      <line num="10" count="2" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
       <line num="15" count="1" type="stmt"/>
       <line num="16" count="1" type="stmt"/>
     </file>
@@ -165,7 +219,7 @@
       <line num="14" count="1" type="stmt"/>
     </file>
     <file name="searchToolsService.ts" path="C:\Users\Rober\Documents\nodejs-projects\dev-tools\src\services\searchToolsService.ts">
-      <metrics statements="21" coveredstatements="21" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <metrics statements="23" coveredstatements="23" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
@@ -187,6 +241,8 @@
       <line num="19" count="1" type="stmt"/>
       <line num="20" count="1" type="stmt"/>
       <line num="21" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
